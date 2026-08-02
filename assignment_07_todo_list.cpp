@@ -74,9 +74,88 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
-
 #include <iostream>
 #include <vector>
 #include <string>
+
 using namespace std;
+
+int main() {
+    vector<string> tasks;
+    int choice;
+
+    do {
+        cout << "\n=========================\n";
+        cout << "      TO-DO LIST MENU\n";
+        cout << "=========================\n";
+        cout << "1. Add Task\n";
+        cout << "2. View Tasks\n";
+        cout << "3. Delete Task\n";
+        cout << "4. Quit\n";
+        cout << "Enter your choice (1-4): ";
+        cin >> choice;
+
+        cin.ignore(); // Clear newline
+
+        switch (choice) {
+
+        case 1: {
+            string task;
+            cout << "Enter task: ";
+            getline(cin, task);
+
+            tasks.push_back(task);
+            cout << "Task added: \"" << task << "\"" << endl;
+            break;
+        }
+
+        case 2: {
+            if (tasks.empty()) {
+                cout << "Your task list is empty." << endl;
+            } else {
+                cout << "\nYour Tasks:\n";
+                for (int i = 0; i < tasks.size(); i++) {
+                    cout << i + 1 << ". " << tasks[i] << endl;
+                }
+            }
+            break;
+        }
+
+        case 3: {
+            if (tasks.empty()) {
+                cout << "There are no tasks to delete." << endl;
+                break;
+            }
+
+            cout << "\nYour Tasks:\n";
+            for (int i = 0; i < tasks.size(); i++) {
+                cout << i + 1 << ". " << tasks[i] << endl;
+            }
+
+            int taskNumber;
+            cout << "Enter task number to delete: ";
+            cin >> taskNumber;
+
+            if (taskNumber >= 1 && taskNumber <= tasks.size()) {
+                cout << "Task \"" << tasks[taskNumber - 1]
+                     << "\" has been removed." << endl;
+                tasks.erase(tasks.begin() + taskNumber - 1);
+            } else {
+                cout << "Error: Invalid task number." << endl;
+            }
+            break;
+        }
+
+        case 4:
+            cout << "Goodbye!" << endl;
+            break;
+
+        default:
+            cout << "Error: Invalid menu choice." << endl;
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
 
