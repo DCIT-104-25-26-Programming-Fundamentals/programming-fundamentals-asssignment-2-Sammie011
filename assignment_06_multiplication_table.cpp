@@ -91,13 +91,12 @@ int main()
         cout << "Error: Number must be positive." << endl;
         return 0;
     }
-
-    // Part A
+    
     printTable(n);
 
     cout << "\n========================\n";
 
-    // Part B
+
     printTables(n);
 
     return 0;
