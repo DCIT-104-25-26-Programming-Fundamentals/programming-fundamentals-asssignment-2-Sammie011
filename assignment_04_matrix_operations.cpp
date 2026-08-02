@@ -63,7 +63,6 @@
 #include <iomanip>
 using namespace std;
 
-// Function Prototypes
 void transposeMatrix();
 void addMatrices();
 void multiplyMatrices();
