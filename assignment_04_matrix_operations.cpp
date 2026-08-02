@@ -59,9 +59,184 @@
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
-
 #include <iostream>
 #include <iomanip>
-#include <string>
 using namespace std;
 
+// Function Prototypes
+void transposeMatrix();
+void addMatrices();
+void multiplyMatrices();
+
+int main()
+{
+    int choice;
+
+    do
+    {
+        cout << "\n===== MATRIX OPERATIONS =====\n";
+        cout << "1. Transpose Matrix\n";
+        cout << "2. Add Two Matrices\n";
+        cout << "3. Multiply Two Matrices\n";
+        cout << "4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+                transposeMatrix();
+                break;
+            case 2:
+                addMatrices();
+                break;
+            case 3:
+                multiplyMatrices();
+                break;
+            case 4:
+                cout << "Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice.\n";
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
+
+void transposeMatrix()
+{
+    int matrix[10][10];
+    int rows, cols;
+
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < cols; j++)
+        {
+            cout << "Enter element[" << i << "][" << j << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+
+    cout << "\nOriginal Matrix:\n";
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < cols; j++)
+            cout << setw(5) << matrix[i][j];
+        cout << endl;
+    }
+
+    cout << "\nTranspose Matrix:\n";
+    for(int i = 0; i < cols; i++)
+    {
+        for(int j = 0; j < rows; j++)
+            cout << setw(5) << matrix[j][i];
+        cout << endl;
+    }
+}
+
+void addMatrices()
+{
+    int A[10][10], B[10][10], C[10][10];
+    int rows, cols;
+
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    cout << "\nEnter Matrix A:\n";
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < cols; j++)
+        {
+            cout << "A[" << i << "][" << j << "]: ";
+            cin >> A[i][j];
+        }
+    }
+
+    cout << "\nEnter Matrix B:\n";
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < cols; j++)
+        {
+            cout << "B[" << i << "][" << j << "]: ";
+            cin >> B[i][j];
+        }
+    }
+
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < cols; j++)
+        {
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+
+    cout << "\nSum Matrix:\n";
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < cols; j++)
+            cout << setw(5) << C[i][j];
+        cout << endl;
+    }
+}
+
+void multiplyMatrices()
+{
+    int A[10][10], B[10][10], C[10][10];
+    int m, n, p;
+
+    cout << "Enter rows of Matrix A: ";
+    cin >> m;
+    cout << "Enter columns of Matrix A: ";
+    cin >> n;
+    cout << "Enter columns of Matrix B: ";
+    cin >> p;
+
+    cout << "\nEnter Matrix A:\n";
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            cout << "A[" << i << "][" << j << "]: ";
+            cin >> A[i][j];
+        }
+    }
+
+    cout << "\nEnter Matrix B:\n";
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < p; j++)
+        {
+            cout << "B[" << i << "][" << j << "]: ";
+            cin >> B[i][j];
+        }
+    }
+
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < p; j++)
+        {
+            C[i][j] = 0;
+            for(int k = 0; k < n; k++)
+            {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    cout << "\nProduct Matrix:\n";
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < p; j++)
+            cout << setw(5) << C[i][j];
+        cout << endl;
+    }
+}
